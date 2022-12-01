@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace DLLImplementation
 {
     internal class Program
     {
-        static void Main(string[] args)
+
+        [DllImport("User32.dll", CharSet = CharSet.Unicode)]
+        public static extern int MessageBox(IntPtr h, string m, string c, int type);
+
+        static int Main()
         {
-            Console.WriteLine("Hello World!");
+            string myString;
+            Console.Write("Enter your message: ");
+            myString = Console.ReadLine();
+            return MessageBox((IntPtr)0, myString, "My Message Box", 0);
         }
     }
 }
